@@ -229,8 +229,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/11/22/第一篇/" itemprop="url">
-                  第一篇
+                <a class="post-title-link" href="/2015/11/28/缓存清理/" itemprop="url">
+                  清理缓存
                 </a>
               
             
@@ -240,91 +240,26 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-22T12:00:52+08:00" content="2015-11-22">
-              2015-11-22
+            <time itemprop="dateCreated" datetime="2015-11-28T15:52:53+08:00" content="2015-11-28">
+              2015-11-28
             </time>
           </span>
 
           
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
               
-            
-          </span>
-        
-      
-    </div>
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/27/第三篇/" itemprop="url">
-                  代码cell自适应高度
-                </a>
+                
+
               
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-10-27T18:44:10+08:00" content="2014-10-27">
-              2014-10-27
-            </time>
-          </span>
-
+            </span>
           
 
           
@@ -345,30 +280,15 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <pre><code>- (<span class="built_in">CGFloat</span>)calcNameLabelHeight     {
-
-<span class="comment">// 1.设置计算最大范围</span>
-<span class="built_in">CGSize</span> maxSize = <span class="built_in">CGSizeMake</span>(_namelabel<span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span>,<span class="number">1000</span>);
-
-<span class="comment">// 2.创建字典包含字体大小</span>
-<span class="built_in">NSDictionary</span> *dict = @{
-
-                       <span class="built_in">NSFontAttributeName</span>:_namelabel<span class="variable">.font</span>
-
-                       };
-
-<span class="comment">// 3.使用方法计算文字的frame</span>
-
-<span class="built_in">CGRect</span> frame = [<span class="keyword">self</span><span class="variable">.addTextField</span><span class="variable">.text</span> boundingRectWithSize:maxSize options:<span class="built_in">NSStringDrawingUsesLineFragmentOrigin</span> attributes:dict context:<span class="literal">nil</span>];
-
-<span class="comment">// 4.返回frame的高度</span>
-<span class="keyword">return</span> frame<span class="variable">.size</span><span class="variable">.height</span>;
-}
+          <h2 id="iOS清理缓存方法">iOS清理缓存方法</h2><pre><code>在点击事件中调用<span class="keyword">clear</span>方法
+ <span class="comment">// 清除缓存</span>
+ [self <span class="keyword">clear</span>];
 </code></pre>
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/28/缓存清理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -444,21 +364,13 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <h2 id="喜欢这篇文章">喜欢这篇文章</h2><hr>
+          <h2 id="喜欢这篇文章">喜欢这篇文章</h2><hr>
 <p>我猜前段时间StackOverflow宕机了。宕机持续了约一小时，但是如果你翻翻社交网站上的相关帖子，你可能会相信在StackOverflow宕机的这一小时里，整个编程世界都停止运转了。</p>
-<p>当然大部分帖子是开玩笑的啦，但是这使我意识到了一些事情。我刚刚写了一天的代码，几小时花在开放的项目中，几小时是我个人的项目。我在与那堆我根本不熟悉的技术诸如LLVM、C++艰苦搏斗了一整天。这些东西对于之前没碰过的人来说非常困难。然而这一整天里我压根没有用StackOverflow。</p>
-<p>事实上，我之前从来没有到 StackOverflow上面去找任何关于LLVM、 C++或是 playn framework（一个不出名的游戏框架，有关它的大部分问答信息都在StackOverflow上面）的答案。即使是我已经为此付出了几个月的艰辛，我也从不去Stackoverflow上当伸手党。当然了，其实我可能会隔几个月才会偶尔看一次 StackOverflow，通常也是从我正在看的论文或是代码上面的链接点击过去的。</p>
-<p>这并不是说我从来没用过 StackOverflow。我记得我刚开始从事编程行业的头几年里，那是天天都泡在上面。从简单的用Python遍历两个列表到困难的定制pasteScript生成的setup.py，各种问题我都试着问过了。但是渐渐的，我不再这么做了。</p>
-<p>当一个库的行为不正常时，我开始跟进到代码里面去试图了解真正发生了什么。我会去读文档，而不是去StackOverflow问一个API是否存在或是一个库是否有某个功能。我会去找到测试方法并且在我的电脑上进行实际的测试，而不是去StackOverflow问我的方案是否正确。</p>
-<p>我发现通过自己研究而不是直接去查找StackOverflow，我从我的错误中学到了更多。我不仅仅是解决了我的问题，我还学到了更多的细节。我已经用我的洞察力解决了好几个类似的问题，若是之前，我肯定要到StackOverflow找答案。</p>
-<p>现在，我并不是说StackOverflow是坏东西。它是一个能从资深开发者那里学到东西的好地方。当你着实不知道去哪能找到相关的信息时，能有这样一个提供了清晰而深刻答案的资源库是非常令人惊喜的。但有时候当我知道可以去哪找到答案时我就会选择自己去找。因为我知道寻找答案的过程会带给我对于问题、答案以及技术更深刻的理解，并且通常这样能够加强我的编程功力。</p>
-<p>我百分之百肯定还会再去StackOverflow，但是很高兴自己能认识到不要再依赖它，即使没有StackOverflow，我的编程生涯也不会停滞。</p>
-<p>我想总有一天我也不会在依赖任何人…</p>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/10/22/second/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -519,14 +431,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

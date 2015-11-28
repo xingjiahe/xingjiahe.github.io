@@ -51,40 +51,22 @@
 
 
 
-<meta name="description" content="- (CGFloat)calcNameLabelHeight     {
-
-// 1.设置计算最大范围
-CGSize maxSize = CGSizeMake(_namelabel.frame.size.width,1000);
-
-// 2.创建字典包含字体大小
-NSDictionary *dict = @{
-
-                       NSFontAttributeName:">
+<meta name="description" content="iOS清理缓存方法在点击事件中调用clear方法
+ // 清除缓存
+ [self clear];">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代码cell自适应高度">
-<meta property="og:url" content="http://xingjiahe.win/2014/10/27/第三篇/index.html">
+<meta property="og:title" content="清理缓存">
+<meta property="og:url" content="http://xingjiahe.win/2015/11/28/缓存清理/index.html">
 <meta property="og:site_name" content="邢家赫">
-<meta property="og:description" content="- (CGFloat)calcNameLabelHeight     {
-
-// 1.设置计算最大范围
-CGSize maxSize = CGSizeMake(_namelabel.frame.size.width,1000);
-
-// 2.创建字典包含字体大小
-NSDictionary *dict = @{
-
-                       NSFontAttributeName:">
-<meta property="og:updated_time" content="2015-11-27T12:30:30.000Z">
+<meta property="og:description" content="iOS清理缓存方法在点击事件中调用clear方法
+ // 清除缓存
+ [self clear];">
+<meta property="og:updated_time" content="2015-11-28T08:03:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="代码cell自适应高度">
-<meta name="twitter:description" content="- (CGFloat)calcNameLabelHeight     {
-
-// 1.设置计算最大范围
-CGSize maxSize = CGSizeMake(_namelabel.frame.size.width,1000);
-
-// 2.创建字典包含字体大小
-NSDictionary *dict = @{
-
-                       NSFontAttributeName:">
+<meta name="twitter:title" content="清理缓存">
+<meta name="twitter:description" content="iOS清理缓存方法在点击事件中调用clear方法
+ // 清除缓存
+ [self clear];">
 
 
 
@@ -96,7 +78,7 @@ NSDictionary *dict = @{
   };
 </script>
 
-  <title> 代码cell自适应高度 | 邢家赫 </title>
+  <title> 清理缓存 | 邢家赫 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -236,7 +218,7 @@ NSDictionary *dict = @{
             
             
               
-                代码cell自适应高度
+                清理缓存
               
             
           </h1>
@@ -245,11 +227,26 @@ NSDictionary *dict = @{
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2014-10-27T18:44:10+08:00" content="2014-10-27">
-              2014-10-27
+            <time itemprop="dateCreated" datetime="2015-11-28T15:52:53+08:00" content="2015-11-28">
+              2015-11-28
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -269,24 +266,59 @@ NSDictionary *dict = @{
       
 
       
-        <span itemprop="articleBody"><pre><code>- (<span class="built_in">CGFloat</span>)calcNameLabelHeight     {
+        <span itemprop="articleBody"><h2 id="iOS清理缓存方法">iOS清理缓存方法</h2><pre><code>在点击事件中调用<span class="keyword">clear</span>方法
+ <span class="comment">// 清除缓存</span>
+ [self <span class="keyword">clear</span>];
+</code></pre><a id="more"></a>
+<pre><code><span class="comment">// 计算单个文件缓存</span>
+- (<span class="keyword">long</span> <span class="keyword">long</span>) fileSizeAtPath:(<span class="built_in">NSString</span>*) filePath{
+<span class="built_in">NSFileManager</span>* manager = [<span class="built_in">NSFileManager</span> defaultManager];
+<span class="keyword">if</span> ([manager fileExistsAtPath:filePath])
+{
+    <span class="keyword">return</span> [[manager attributesOfItemAtPath:filePath error:<span class="literal">nil</span>] fileSize];
+}
+<span class="keyword">return</span> <span class="number">0</span>;
+}
 
-<span class="comment">// 1.设置计算最大范围</span>
-<span class="built_in">CGSize</span> maxSize = <span class="built_in">CGSizeMake</span>(_namelabel<span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span>,<span class="number">1000</span>);
+<span class="comment">// 计算整个目录缓存</span>
+- (<span class="keyword">float</span> ) folderSizeAtPath:(<span class="built_in">NSString</span>*) folderPath{
+<span class="built_in">NSFileManager</span>* manager = [<span class="built_in">NSFileManager</span> defaultManager];
+<span class="keyword">if</span> (![manager fileExistsAtPath:folderPath]) <span class="keyword">return</span> <span class="number">0</span>;
+<span class="built_in">NSEnumerator</span> *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+<span class="built_in">NSString</span>* fileName;
+<span class="keyword">long</span> <span class="keyword">long</span> folderSize = <span class="number">0</span>;
+<span class="keyword">while</span> ((fileName = [childFilesEnumerator nextObject]) != <span class="literal">nil</span>){
+    <span class="built_in">NSString</span>* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+    folderSize += [<span class="keyword">self</span> fileSizeAtPath:fileAbsolutePath];
+}
+<span class="keyword">return</span> folderSize/(<span class="number">1024.0</span>*<span class="number">1024.0</span>);
+}
+<span class="comment">// 清除缓存</span>
+- (<span class="keyword">void</span>)clear
+{
+ <span class="built_in">dispatch_async</span>(
+               dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)
+               , ^{
+                   <span class="built_in">NSString</span> *cachPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSCachesDirectory</span>,<span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) objectAtIndex:<span class="number">0</span>];
 
-<span class="comment">// 2.创建字典包含字体大小</span>
-<span class="built_in">NSDictionary</span> *dict = @{
+                   <span class="built_in">NSArray</span> *files = [[<span class="built_in">NSFileManager</span> defaultManager] subpathsAtPath:cachPath];
+                   <span class="built_in">NSLog</span>(<span class="string">@"files :%lu"</span>,(<span class="keyword">unsigned</span> <span class="keyword">long</span>)[files count]);
+                   <span class="keyword">for</span> (<span class="built_in">NSString</span> *p <span class="keyword">in</span> files) {
+                       <span class="built_in">NSError</span> *error;
+                       <span class="built_in">NSString</span> *path = [cachPath stringByAppendingPathComponent:p];
+                       <span class="keyword">if</span> ([[<span class="built_in">NSFileManager</span> defaultManager] fileExistsAtPath:path]) {
+                           [[<span class="built_in">NSFileManager</span> defaultManager] removeItemAtPath:path error:&amp;error];
+                       }
+                   }
+[<span class="keyword">self</span> performSelectorOnMainThread:<span class="keyword">@selector</span>(clearCacheSuccess) withObject:<span class="literal">nil</span> waitUntilDone:<span class="literal">YES</span>];});
 
-                       <span class="built_in">NSFontAttributeName</span>:_namelabel<span class="variable">.font</span>
 
-                       };
 
-<span class="comment">// 3.使用方法计算文字的frame</span>
+    }
 
-<span class="built_in">CGRect</span> frame = [<span class="keyword">self</span><span class="variable">.addTextField</span><span class="variable">.text</span> boundingRectWithSize:maxSize options:<span class="built_in">NSStringDrawingUsesLineFragmentOrigin</span> attributes:dict context:<span class="literal">nil</span>];
-
-<span class="comment">// 4.返回frame的高度</span>
-<span class="keyword">return</span> frame<span class="variable">.size</span><span class="variable">.height</span>;
+-(<span class="keyword">void</span>)clearCacheSuccess
+{
+    <span class="built_in">NSLog</span>(<span class="string">@"清理成功"</span>);
 }
 </code></pre></span>
       
@@ -312,10 +344,6 @@ NSDictionary *dict = @{
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/22/第一篇/" rel="prev" title="第一篇">
-                第一篇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -383,14 +411,14 @@ NSDictionary *dict = @{
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
@@ -429,7 +457,7 @@ NSDictionary *dict = @{
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS清理缓存方法"><span class="nav-number">1.</span> <span class="nav-text">iOS清理缓存方法</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
