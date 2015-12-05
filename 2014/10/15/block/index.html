@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="Objective-C," />
 
 
 
@@ -51,25 +51,25 @@
 
 
 
-<meta name="description" content="单例在开发中算是很实用了分享两种写法static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstance ==">
+<meta name="description" content="一些关于block的基础注意：使用block传值的注意事项
+// MRC
+// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）
+// 2.block释放的时候要使用专有的Block_release(&amp;lt;#…#&amp;gt;)（block区别于向内存静态申请空间(+all">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例">
-<meta property="og:url" content="http://xingjiahe.win/2014/11/02/单例/index.html">
+<meta property="og:title" content="关于block">
+<meta property="og:url" content="http://xingjiahe.win/2014/10/15/block/index.html">
 <meta property="og:site_name" content="邢家赫的博客">
-<meta property="og:description" content="单例在开发中算是很实用了分享两种写法static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstance ==">
-<meta property="og:updated_time" content="2015-12-05T07:40:14.000Z">
+<meta property="og:description" content="一些关于block的基础注意：使用block传值的注意事项
+// MRC
+// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）
+// 2.block释放的时候要使用专有的Block_release(&amp;lt;#…#&amp;gt;)（block区别于向内存静态申请空间(+all">
+<meta property="og:updated_time" content="2015-12-05T07:57:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例">
-<meta name="twitter:description" content="单例在开发中算是很实用了分享两种写法static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstance ==">
+<meta name="twitter:title" content="关于block">
+<meta name="twitter:description" content="一些关于block的基础注意：使用block传值的注意事项
+// MRC
+// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）
+// 2.block释放的时候要使用专有的Block_release(&amp;lt;#…#&amp;gt;)（block区别于向内存静态申请空间(+all">
 
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title> 单例 | 邢家赫的博客 </title>
+  <title> 关于block | 邢家赫的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -221,7 +221,7 @@
             
             
               
-                单例
+                关于block
               
             
           </h1>
@@ -230,8 +230,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2014-11-02T15:17:53+08:00" content="2014-11-02">
-              2014-11-02
+            <time itemprop="dateCreated" datetime="2014-10-15T15:50:54+08:00" content="2014-10-15">
+              2014-10-15
             </time>
           </span>
 
@@ -254,28 +254,16 @@
       
 
       
-        <span itemprop="articleBody"><h4 id="单例在开发中算是很实用了分享两种写法">单例在开发中算是很实用了分享两种写法</h4><pre><code><span class="keyword">static</span> LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-<span class="keyword">@synchronized</span>(<span class="keyword">self</span>){           <span class="comment">//这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护</span>
-    <span class="keyword">if</span> (shareInstance == <span class="literal">nil</span>) {
-        shareInstance = [[<span class="keyword">super</span> allocWithZone:<span class="literal">NULL</span>] init];
-    }
-}
-<span class="keyword">return</span> shareInstance;
-}
-
-
-
-+ (LOSingleton *) sharedInstance
-{
-<span class="keyword">static</span>  LOSingleton *sharedInstance = <span class="literal">nil</span> ;
-<span class="keyword">static</span>  <span class="built_in">dispatch_once_t</span> onceToken;  <span class="comment">// 锁</span>
-<span class="built_in">dispatch_once</span> (&amp; onceToken, ^ {     <span class="comment">// 最多调用一次</span>
-    sharedInstance = [[<span class="keyword">self</span>  alloc] init];
-});
-<span class="keyword">return</span>  sharedInstance;
-}
-</code></pre></span>
+        <span itemprop="articleBody"><h4 id="一些关于block的基础">一些关于block的基础</h4><h4 id="注意：使用block传值的注意事项">注意：使用block传值的注意事项</h4><hr>
+<p>// MRC</p>
+<p>// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）</p>
+<p>// 2.block释放的时候要使用专有的Block_release(&lt;#…#&gt;)（block区别于向内存静态申请空间(+alloc)的OC普通对象,不符合常规内存管理）</p>
+<p>// 3.在block实现部分，必须使用__block来修饰实例变量、self。（block会持有其内部变量，导致引用计数+1）</p>
+<hr>
+<p>// ARC</p>
+<p>// 1.block声明为属性的时候要使用strong语义,strong会自动将block拷贝一份到堆区</p>
+<p>// 2.在block实现部分，必须使用__weak来修饰实例变量、self。</p>
+</span>
       
     </div>
 
@@ -283,7 +271,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
           
         </div>
       
@@ -292,16 +280,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/10/22/stack overflow/" rel="next" title="我已经不再依赖stack overflow">
-                <i class="fa fa-chevron-left"></i> 我已经不再依赖stack overflow
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/11/05/tableView小坑/" rel="prev" title="storyboard中拖拽tableView">
-                storyboard中拖拽tableView <i class="fa fa-chevron-right"></i>
+              <a href="/2014/10/22/stack overflow/" rel="prev" title="我已经不再依赖stack overflow">
+                我已经不再依赖stack overflow <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -416,7 +400,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例在开发中算是很实用了分享两种写法"><span class="nav-number">1.</span> <span class="nav-text">单例在开发中算是很实用了分享两种写法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些关于block的基础"><span class="nav-number">1.</span> <span class="nav-text">一些关于block的基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意：使用block传值的注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意：使用block传值的注意事项</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
