@@ -51,25 +51,16 @@
 
 
 
-<meta name="description" content="单例在开发中算是很实用了分享两种写法static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstance ==">
+<meta name="description" content="当要在block中使用self时可以避免self的block块中持有self本身,造成循环持有__weak__typeof(self)weakSelf = self">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例">
-<meta property="og:url" content="http://xingjiahe.win/2014/11/02/单例/index.html">
+<meta property="og:title" content="block中的self">
+<meta property="og:url" content="http://xingjiahe.win/2014/10/17/block中的self/index.html">
 <meta property="og:site_name" content="邢家赫的博客">
-<meta property="og:description" content="单例在开发中算是很实用了分享两种写法static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstance ==">
-<meta property="og:updated_time" content="2015-12-05T07:40:14.000Z">
+<meta property="og:description" content="当要在block中使用self时可以避免self的block块中持有self本身,造成循环持有__weak__typeof(self)weakSelf = self">
+<meta property="og:updated_time" content="2015-12-05T08:19:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例">
-<meta name="twitter:description" content="单例在开发中算是很实用了分享两种写法static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstance ==">
+<meta name="twitter:title" content="block中的self">
+<meta name="twitter:description" content="当要在block中使用self时可以避免self的block块中持有self本身,造成循环持有__weak__typeof(self)weakSelf = self">
 
 
 
@@ -81,7 +72,7 @@
   };
 </script>
 
-  <title> 单例 | 邢家赫的博客 </title>
+  <title> block中的self | 邢家赫的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -221,7 +212,7 @@
             
             
               
-                单例
+                block中的self
               
             
           </h1>
@@ -230,8 +221,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2014-11-02T15:17:53+08:00" content="2014-11-02">
-              2014-11-02
+            <time itemprop="dateCreated" datetime="2014-10-17T16:16:52+08:00" content="2014-10-17">
+              2014-10-17
             </time>
           </span>
 
@@ -254,27 +245,7 @@
       
 
       
-        <span itemprop="articleBody"><h4 id="单例在开发中算是很实用了分享两种写法">单例在开发中算是很实用了分享两种写法</h4><pre><code><span class="keyword">static</span> LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-<span class="keyword">@synchronized</span>(<span class="keyword">self</span>){           <span class="comment">//这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护</span>
-    <span class="keyword">if</span> (shareInstance == <span class="literal">nil</span>) {
-        shareInstance = [[<span class="keyword">super</span> allocWithZone:<span class="literal">NULL</span>] init];
-    }
-}
-<span class="keyword">return</span> shareInstance;
-}
-
-
-
-+ (LOSingleton *) sharedInstance
-{
-<span class="keyword">static</span>  LOSingleton *sharedInstance = <span class="literal">nil</span> ;
-<span class="keyword">static</span>  <span class="built_in">dispatch_once_t</span> onceToken;  <span class="comment">// 锁</span>
-<span class="built_in">dispatch_once</span> (&amp; onceToken, ^ {     <span class="comment">// 最多调用一次</span>
-    sharedInstance = [[<span class="keyword">self</span>  alloc] init];
-});
-<span class="keyword">return</span>  sharedInstance;
-}
+        <span itemprop="articleBody"><h4 id="当要在block中使用self时">当要在block中使用self时</h4><h4 id="可以避免self的block块中持有self本身,造成循环持有">可以避免self的block块中持有self本身,造成循环持有</h4><pre><code>__weak__typeof(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>
 </code></pre></span>
       
     </div>
@@ -292,16 +263,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/10/22/stack overflow/" rel="next" title="我已经不再依赖stack overflow">
-                <i class="fa fa-chevron-left"></i> 我已经不再依赖stack overflow
+              <a href="/2014/10/15/block/" rel="next" title="关于block">
+                <i class="fa fa-chevron-left"></i> 关于block
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/11/05/tableView小坑/" rel="prev" title="storyboard中拖拽tableView">
-                storyboard中拖拽tableView <i class="fa fa-chevron-right"></i>
+              <a href="/2014/10/22/stack overflow/" rel="prev" title="我已经不再依赖stack overflow">
+                我已经不再依赖stack overflow <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -416,7 +387,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例在开发中算是很实用了分享两种写法"><span class="nav-number">1.</span> <span class="nav-text">单例在开发中算是很实用了分享两种写法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#当要在block中使用self时"><span class="nav-number">1.</span> <span class="nav-text">当要在block中使用self时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以避免self的block块中持有self本身,造成循环持有"><span class="nav-number">2.</span> <span class="nav-text">可以避免self的block块中持有self本身,造成循环持有</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
