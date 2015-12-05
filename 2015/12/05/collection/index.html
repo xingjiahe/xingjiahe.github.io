@@ -51,22 +51,22 @@
 
 
 
-<meta name="description" content="iOS清理缓存方法在点击事件中调用clear方法
- // 清除缓存
- [self clear];">
+<meta name="description" content="####很多人都知道tableViewCell的自适应
+####但是CollectionView 中的 cell 自适应呢?
+在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estima">
 <meta property="og:type" content="article">
-<meta property="og:title" content="清理缓存">
-<meta property="og:url" content="http://xingjiahe.win/2015/11/28/缓存清理/index.html">
+<meta property="og:title" content="collection">
+<meta property="og:url" content="http://xingjiahe.win/2015/12/05/collection/index.html">
 <meta property="og:site_name" content="邢家赫的博客">
-<meta property="og:description" content="iOS清理缓存方法在点击事件中调用clear方法
- // 清除缓存
- [self clear];">
-<meta property="og:updated_time" content="2015-11-28T08:03:47.000Z">
+<meta property="og:description" content="####很多人都知道tableViewCell的自适应
+####但是CollectionView 中的 cell 自适应呢?
+在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estima">
+<meta property="og:updated_time" content="2015-12-05T07:00:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清理缓存">
-<meta name="twitter:description" content="iOS清理缓存方法在点击事件中调用clear方法
- // 清除缓存
- [self clear];">
+<meta name="twitter:title" content="collection">
+<meta name="twitter:description" content="####很多人都知道tableViewCell的自适应
+####但是CollectionView 中的 cell 自适应呢?
+在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estima">
 
 
 
@@ -78,7 +78,7 @@
   };
 </script>
 
-  <title> 清理缓存 | 邢家赫的博客 </title>
+  <title> collection | 邢家赫的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -218,7 +218,7 @@
             
             
               
-                清理缓存
+                collection
               
             
           </h1>
@@ -227,26 +227,11 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-28T15:52:53+08:00" content="2015-11-28">
-              2015-11-28
+            <time itemprop="dateCreated" datetime="2015-12-05T14:59:24+08:00" content="2015-12-05">
+              2015-12-05
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/note/" itemprop="url" rel="index">
-                    <span itemprop="name">note</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -266,61 +251,16 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="iOS清理缓存方法">iOS清理缓存方法</h2><pre><code>在点击事件中调用<span class="keyword">clear</span>方法
- <span class="comment">// 清除缓存</span>
- [self <span class="keyword">clear</span>];
-</code></pre><a id="more"></a>
-<pre><code><span class="comment">// 计算单个文件缓存</span>
-- (<span class="keyword">long</span> <span class="keyword">long</span>) fileSizeAtPath:(<span class="built_in">NSString</span>*) filePath{
-<span class="built_in">NSFileManager</span>* manager = [<span class="built_in">NSFileManager</span> defaultManager];
-<span class="keyword">if</span> ([manager fileExistsAtPath:filePath])
-{
-    <span class="keyword">return</span> [[manager attributesOfItemAtPath:filePath error:<span class="literal">nil</span>] fileSize];
-}
-<span class="keyword">return</span> <span class="number">0</span>;
-}
-
-<span class="comment">// 计算整个目录缓存</span>
-- (<span class="keyword">float</span> ) folderSizeAtPath:(<span class="built_in">NSString</span>*) folderPath{
-<span class="built_in">NSFileManager</span>* manager = [<span class="built_in">NSFileManager</span> defaultManager];
-<span class="keyword">if</span> (![manager fileExistsAtPath:folderPath]) <span class="keyword">return</span> <span class="number">0</span>;
-<span class="built_in">NSEnumerator</span> *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
-<span class="built_in">NSString</span>* fileName;
-<span class="keyword">long</span> <span class="keyword">long</span> folderSize = <span class="number">0</span>;
-<span class="keyword">while</span> ((fileName = [childFilesEnumerator nextObject]) != <span class="literal">nil</span>){
-    <span class="built_in">NSString</span>* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
-    folderSize += [<span class="keyword">self</span> fileSizeAtPath:fileAbsolutePath];
-}
-<span class="keyword">return</span> folderSize/(<span class="number">1024.0</span>*<span class="number">1024.0</span>);
-}
-<span class="comment">// 清除缓存</span>
-- (<span class="keyword">void</span>)clear
-{
- <span class="built_in">dispatch_async</span>(
-               dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)
-               , ^{
-                   <span class="built_in">NSString</span> *cachPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSCachesDirectory</span>,<span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) objectAtIndex:<span class="number">0</span>];
-
-                   <span class="built_in">NSArray</span> *files = [[<span class="built_in">NSFileManager</span> defaultManager] subpathsAtPath:cachPath];
-                   <span class="built_in">NSLog</span>(<span class="string">@"files :%lu"</span>,(<span class="keyword">unsigned</span> <span class="keyword">long</span>)[files count]);
-                   <span class="keyword">for</span> (<span class="built_in">NSString</span> *p <span class="keyword">in</span> files) {
-                       <span class="built_in">NSError</span> *error;
-                       <span class="built_in">NSString</span> *path = [cachPath stringByAppendingPathComponent:p];
-                       <span class="keyword">if</span> ([[<span class="built_in">NSFileManager</span> defaultManager] fileExistsAtPath:path]) {
-                           [[<span class="built_in">NSFileManager</span> defaultManager] removeItemAtPath:path error:&amp;error];
-                       }
-                   }
-[<span class="keyword">self</span> performSelectorOnMainThread:<span class="keyword">@selector</span>(clearCacheSuccess) withObject:<span class="literal">nil</span> waitUntilDone:<span class="literal">YES</span>];});
-
-
-
-    }
-
--(<span class="keyword">void</span>)clearCacheSuccess
-{
-    <span class="built_in">NSLog</span>(<span class="string">@"清理成功"</span>);
-}
-</code></pre></span>
+        <span itemprop="articleBody"><p>####很多人都知道tableViewCell的自适应</p>
+<p>####但是CollectionView 中的 cell 自适应呢?</p>
+<p>在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estimatedItemSize = …。 只要设置了 layout 的 estimatedItemSize，collection view 就会根据 cell 里面的 autolayout 约束去确定cell 的大小。</p>
+<p>原理：</p>
+<p>1.collection view 根据 layout 的 estimatedItemSize 算出估计的 contentSize，有了 contentSize collection view 就开始显示</p>
+<p>2.collection view 在显示的过程中，即将被显示的 cell 根据 autolayout 的约束算出自适应内容的 size</p>
+<p>3.layout 从 collection view 里获取更新过的 size attribute</p>
+<p>4.layout 返回最终的 size attribute 给 collection view</p>
+<p>5.collection 使用这个最终的 size attribute 展示 cell</p>
+</span>
       
     </div>
 
@@ -337,17 +277,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/28/cell高度/" rel="next" title="自适应cell高度">
-                <i class="fa fa-chevron-left"></i> 自适应cell高度
+              <a href="/2015/11/28/缓存清理/" rel="next" title="清理缓存">
+                <i class="fa fa-chevron-left"></i> 清理缓存
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/05/collection/" rel="prev" title="collection">
-                collection <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -461,7 +397,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS清理缓存方法"><span class="nav-number">1.</span> <span class="nav-text">iOS清理缓存方法</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
