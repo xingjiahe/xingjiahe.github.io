@@ -65,7 +65,7 @@ static LOSingleton * shareInstance;
 +( LOSingleton *)sharedInstance{
 @synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
     if (shareInstanc">
-<meta property="og:updated_time" content="2015-12-05T07:19:33.000Z">
+<meta property="og:updated_time" content="2015-12-05T07:21:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例">
 <meta name="twitter:description" content="####单例在开发中算是很实用了分享两种写法
