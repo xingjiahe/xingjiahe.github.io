@@ -51,22 +51,19 @@
 
 
 
-<meta name="description" content="####很多人都知道tableViewCell的自适应
-####但是CollectionView 中的 cell 自适应呢?
-在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estima">
+<meta name="description" content="很多人都知道tableViewCell的自适应但是CollectionView 中的 cell 自适应呢?
+在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estimatedItemSi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="collection">
-<meta property="og:url" content="http://xingjiahe.win/2015/12/05/collection/index.html">
+<meta property="og:title" content="CollectionView 中的 cell 自适应">
+<meta property="og:url" content="http://xingjiahe.win/2015/04/05/collection/index.html">
 <meta property="og:site_name" content="邢家赫的博客">
-<meta property="og:description" content="####很多人都知道tableViewCell的自适应
-####但是CollectionView 中的 cell 自适应呢?
-在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estima">
-<meta property="og:updated_time" content="2015-12-05T07:00:10.000Z">
+<meta property="og:description" content="很多人都知道tableViewCell的自适应但是CollectionView 中的 cell 自适应呢?
+在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estimatedItemSi">
+<meta property="og:updated_time" content="2015-12-05T07:02:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="collection">
-<meta name="twitter:description" content="####很多人都知道tableViewCell的自适应
-####但是CollectionView 中的 cell 自适应呢?
-在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estima">
+<meta name="twitter:title" content="CollectionView 中的 cell 自适应">
+<meta name="twitter:description" content="很多人都知道tableViewCell的自适应但是CollectionView 中的 cell 自适应呢?
+在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estimatedItemSi">
 
 
 
@@ -78,7 +75,7 @@
   };
 </script>
 
-  <title> collection | 邢家赫的博客 </title>
+  <title> CollectionView 中的 cell 自适应 | 邢家赫的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -218,7 +215,7 @@
             
             
               
-                collection
+                CollectionView 中的 cell 自适应
               
             
           </h1>
@@ -227,8 +224,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-05T14:59:24+08:00" content="2015-12-05">
-              2015-12-05
+            <time itemprop="dateCreated" datetime="2015-04-05T14:59:24+08:00" content="2015-04-05">
+              2015-04-05
             </time>
           </span>
 
@@ -251,8 +248,7 @@
       
 
       
-        <span itemprop="articleBody"><p>####很多人都知道tableViewCell的自适应</p>
-<p>####但是CollectionView 中的 cell 自适应呢?</p>
+        <span itemprop="articleBody"><h4 id="很多人都知道tableViewCell的自适应">很多人都知道tableViewCell的自适应</h4><h4 id="但是CollectionView_中的_cell_自适应呢?">但是CollectionView 中的 cell 自适应呢?</h4><hr>
 <p>在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estimatedItemSize = …。 只要设置了 layout 的 estimatedItemSize，collection view 就会根据 cell 里面的 autolayout 约束去确定cell 的大小。</p>
 <p>原理：</p>
 <p>1.collection view 根据 layout 的 estimatedItemSize 算出估计的 contentSize，有了 contentSize collection view 就开始显示</p>
@@ -277,13 +273,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/28/缓存清理/" rel="next" title="清理缓存">
-                <i class="fa fa-chevron-left"></i> 清理缓存
+              <a href="/2015/03/28/cell高度/" rel="next" title="自适应cell高度">
+                <i class="fa fa-chevron-left"></i> 自适应cell高度
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/28/缓存清理/" rel="prev" title="清理缓存">
+                清理缓存 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -397,7 +397,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#很多人都知道tableViewCell的自适应"><span class="nav-number">1.</span> <span class="nav-text">很多人都知道tableViewCell的自适应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#但是CollectionView_中的_cell_自适应呢?"><span class="nav-number">2.</span> <span class="nav-text">但是CollectionView 中的 cell 自适应呢?</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
