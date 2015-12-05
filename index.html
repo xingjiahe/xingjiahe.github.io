@@ -307,6 +307,725 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/04/05/collection/" itemprop="url">
+                  CollectionView 中的 cell 自适应
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-04-05T14:59:24+08:00" content="2015-04-05">
+              2015-04-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h4 id="很多人都知道tableViewCell的自适应">很多人都知道tableViewCell的自适应</h4><h4 id="但是CollectionView_中的_cell_自适应呢?">但是CollectionView 中的 cell 自适应呢?</h4><hr>
+<p>在 collection view 中也能让 cell 自适应内容大小，如果 UICollectionView 的 layout 是一个 UICollectionViewFlowLayout，只需要将 layout.itemSize = … 改成 layout.estimatedItemSize = …。 只要设置了 layout 的 estimatedItemSize，collection view 就会根据 cell 里面的 autolayout 约束去确定cell 的大小。</p>
+<p>原理：</p>
+<p>1.collection view 根据 layout 的 estimatedItemSize 算出估计的 contentSize，有了 contentSize collection view 就开始显示</p>
+<p>2.collection view 在显示的过程中，即将被显示的 cell 根据 autolayout 的约束算出自适应内容的 size</p>
+<p>3.layout 从 collection view 里获取更新过的 size attribute</p>
+<p>4.layout 返回最终的 size attribute 给 collection view</p>
+<p>5.collection 使用这个最终的 size attribute 展示 cell</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/28/cell高度/" itemprop="url">
+                  自适应cell高度
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-03-28T16:22:09+08:00" content="2015-03-28">
+              2015-03-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h4 id="代码计算_cell自适应高度">代码计算 cell自适应高度</h4><pre><code><span class="comment">//这是自己写的方法</span>
+- (<span class="built_in">CGFloat</span>)calcNameLabelHeight
+{
+<span class="comment">// 1.设置计算最大范围</span>
+<span class="built_in">CGSize</span> maxSize = <span class="built_in">CGSizeMake</span>(_namelabel<span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span>,<span class="number">1000</span>);
+
+<span class="comment">// 2.创建字典包含字体大小</span>
+<span class="built_in">NSDictionary</span> *dict = @{
+
+                       <span class="built_in">NSFontAttributeName</span>:_namelabel<span class="variable">.font</span>
+
+                       };
+
+<span class="comment">// 3.使用方法计算文字的frame</span>
+
+<span class="built_in">CGRect</span> frame = [<span class="keyword">self</span><span class="variable">.addTextField</span><span class="variable">.text</span> boundingRectWithSize:maxSize options:<span class="built_in">NSStringDrawingUsesLineFragmentOrigin</span> attributes:dict context:<span class="literal">nil</span>];
+
+<span class="comment">// 4.返回frame的高度</span>
+<span class="keyword">return</span> frame<span class="variable">.size</span><span class="variable">.height</span>;
+
+
+}
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/12/05/圆角卡顿问题/" itemprop="url">
+                  圆角卡顿问题解决
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-12-05T10:35:18+08:00" content="2014-12-05">
+              2014-12-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h4 id="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?">使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?</h4><pre><code><span class="comment">// 不要在滚动视图使用cornerRadius或者mask </span>
+<span class="comment">// 添加</span>
+<span class="keyword">self</span><span class="variable">.layer</span><span class="variable">.shouldRasterize</span> = <span class="literal">YES</span>; 
+                                 <span class="keyword">self</span><span class="variable">.layer</span><span class="variable">.rasterizationScale</span> = [<span class="built_in">UIScreen</span>     mainScreen]<span class="variable">.scale</span>;
+
+采取预先生成圆角图片，并缓存起来这个方法才是比较好的手段。预处理圆角图片可以在后台处理，处理完毕后缓存起来，再在主线程显示，这就避免了不必要的离屏渲染了。
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/15/监听textfiled/" itemprop="url">
+                  监听textfiled字数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-15T11:41:49+08:00" content="2014-11-15">
+              2014-11-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h4 id="监听textfiled中的字数">监听textfiled中的字数</h4><pre><code><span class="comment">// 注册notification</span>
+[[NSNotificationCenter defaultCenter]<span class="string">addObserver:</span>self <span class="string">selector:</span><span class="annotation">@selector</span>(<span class="string">textFiledEditChanged:</span>) <span class="string">name:</span>@<span class="string">"UITextFieldTextDidChangeNotification"</span>
+<span class="string">object:</span>self.addTextField];
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/11/15/监听textfiled/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/05/tableView小坑/" itemprop="url">
+                  storyboard中拖拽tableView
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-05T11:23:08+08:00" content="2014-11-05">
+              2014-11-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h4 id="最近在storyboard的navigationController中拖拽tableView时遇到的小坑各位童鞋们也要注意啊">最近在storyboard的navigationController中拖拽tableView时遇到的小坑各位童鞋们也要注意啊</h4><p>在storyboard的navigationController中拖拽tableView时 系统默认会给tableView一个可滑动距离44,这样就会造成tableview顶部有一大块的预留区域,可以用这两种方法去掉它</p>
+<pre><code><span class="comment">// 1</span>
+
+<span class="keyword">self</span><span class="variable">.automaticallyAdjustsScrollViewInsets</span> = <span class="literal">NO</span>;
+
+<span class="comment">// 2</span>
+<span class="keyword">self</span><span class="variable">.navigationController</span><span class="variable">.navigationBar</span><span class="variable">.translucent</span> = <span class="literal">NO</span>;
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/02/单例/" itemprop="url">
+                  单例
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-02T15:17:53+08:00" content="2014-11-02">
+              2014-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h4 id="单例在开发中算是很实用了分享两种写法">单例在开发中算是很实用了分享两种写法</h4><pre><code><span class="keyword">static</span> LOSingleton * shareInstance;
++( LOSingleton *)sharedInstance{
+<span class="keyword">@synchronized</span>(<span class="keyword">self</span>){           <span class="comment">//这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护</span>
+    <span class="keyword">if</span> (shareInstance == <span class="literal">nil</span>) {
+        shareInstance = [[<span class="keyword">super</span> allocWithZone:<span class="literal">NULL</span>] init];
+    }
+}
+<span class="keyword">return</span> shareInstance;
+}
+
+
+
++ (LOSingleton *) sharedInstance
+{
+<span class="keyword">static</span>  LOSingleton *sharedInstance = <span class="literal">nil</span> ;
+<span class="keyword">static</span>  <span class="built_in">dispatch_once_t</span> onceToken;  <span class="comment">// 锁</span>
+<span class="built_in">dispatch_once</span> (&amp; onceToken, ^ {     <span class="comment">// 最多调用一次</span>
+    sharedInstance = [[<span class="keyword">self</span>  alloc] init];
+});
+<span class="keyword">return</span>  sharedInstance;
+}
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/22/stack overflow/" itemprop="url">
+                  我已经不再依赖stack overflow
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-10-22T20:06:04+08:00" content="2014-10-22">
+              2014-10-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="喜欢这篇文章">喜欢这篇文章</h2><hr>
+<p>我猜前段时间StackOverflow宕机了。宕机持续了约一小时，但是如果你翻翻社交网站上的相关帖子，你可能会相信在StackOverflow宕机的这一小时里，整个编程世界都停止运转了。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/10/22/stack overflow/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/15/block/" itemprop="url">
+                  关于block
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-10-15T15:50:54+08:00" content="2014-10-15">
+              2014-10-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h4 id="一些关于block的基础">一些关于block的基础</h4><h4 id="注意：使用block传值的注意事项">注意：使用block传值的注意事项</h4><hr>
+<p>// MRC</p>
+<p>// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）</p>
+<p>// 2.block释放的时候要使用专有的Block_release(&lt;#…#&gt;)（block区别于向内存静态申请空间(+alloc)的OC普通对象,不符合常规内存管理）</p>
+<p>// 3.在block实现部分，必须使用__block来修饰实例变量、self。（block会持有其内部变量，导致引用计数+1）</p>
+<hr>
+<p>// ARC</p>
+<p>// 1.block声明为属性的时候要使用strong语义,strong会自动将block拷贝一份到堆区</p>
+<p>// 2.在block实现部分，必须使用__weak来修饰实例变量、self。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
