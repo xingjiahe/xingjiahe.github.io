@@ -51,28 +51,28 @@
 
 
 
-<meta name="description" content="####单例在开发中算是很实用了分享两种写法
-static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstanc">
+<meta name="description" content="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?// 不要在滚动视图使用cornerRadius或者mask 
+// 添加
+self.layer.shouldRasterize = YES;                              self.layer.rasterizationScale = [UIScreen     mainScreen].scale;
+
+采取预先生成">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例">
-<meta property="og:url" content="http://xingjiahe.win/2014/11/02/单例/index.html">
+<meta property="og:title" content="圆角卡顿问题解决">
+<meta property="og:url" content="http://xingjiahe.win/2014/12/05/圆角卡顿问题/index.html">
 <meta property="og:site_name" content="邢家赫的博客">
-<meta property="og:description" content="####单例在开发中算是很实用了分享两种写法
-static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstanc">
-<meta property="og:updated_time" content="2015-12-05T07:21:04.000Z">
+<meta property="og:description" content="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?// 不要在滚动视图使用cornerRadius或者mask 
+// 添加
+self.layer.shouldRasterize = YES;                              self.layer.rasterizationScale = [UIScreen     mainScreen].scale;
+
+采取预先生成">
+<meta property="og:updated_time" content="2015-12-05T07:38:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例">
-<meta name="twitter:description" content="####单例在开发中算是很实用了分享两种写法
-static LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-@synchronized(self){           //这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护
-    if (shareInstanc">
+<meta name="twitter:title" content="圆角卡顿问题解决">
+<meta name="twitter:description" content="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?// 不要在滚动视图使用cornerRadius或者mask 
+// 添加
+self.layer.shouldRasterize = YES;                              self.layer.rasterizationScale = [UIScreen     mainScreen].scale;
+
+采取预先生成">
 
 
 
@@ -84,7 +84,7 @@ static LOSingleton * shareInstance;
   };
 </script>
 
-  <title> 单例 | 邢家赫的博客 </title>
+  <title> 圆角卡顿问题解决 | 邢家赫的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +224,7 @@ static LOSingleton * shareInstance;
             
             
               
-                单例
+                圆角卡顿问题解决
               
             
           </h1>
@@ -233,8 +233,8 @@ static LOSingleton * shareInstance;
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2014-11-02T15:17:53+08:00" content="2014-11-02">
-              2014-11-02
+            <time itemprop="dateCreated" datetime="2014-12-05T10:35:18+08:00" content="2014-12-05">
+              2014-12-05
             </time>
           </span>
 
@@ -257,28 +257,11 @@ static LOSingleton * shareInstance;
       
 
       
-        <span itemprop="articleBody"><p>####单例在开发中算是很实用了分享两种写法</p>
-<pre><code><span class="keyword">static</span> LOSingleton * shareInstance;
-+( LOSingleton *)sharedInstance{
-<span class="keyword">@synchronized</span>(<span class="keyword">self</span>){           <span class="comment">//这个东西其实就是 一个加锁。如果self 其他线程访问，则会阻塞。这样做一般是用来对单例 进行一个死锁的保护</span>
-    <span class="keyword">if</span> (shareInstance == <span class="literal">nil</span>) {
-        shareInstance = [[<span class="keyword">super</span> allocWithZone:<span class="literal">NULL</span>] init];
-    }
-}
-<span class="keyword">return</span> shareInstance;
-}
+        <span itemprop="articleBody"><h4 id="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?">使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?</h4><pre><code><span class="comment">// 不要在滚动视图使用cornerRadius或者mask </span>
+<span class="comment">// 添加</span>
+<span class="keyword">self</span><span class="variable">.layer</span><span class="variable">.shouldRasterize</span> = <span class="literal">YES</span>;                              <span class="keyword">self</span><span class="variable">.layer</span><span class="variable">.rasterizationScale</span> = [<span class="built_in">UIScreen</span>     mainScreen]<span class="variable">.scale</span>;
 
-
-
-+ (LOSingleton *) sharedInstance
-{
-<span class="keyword">static</span>  LOSingleton *sharedInstance = <span class="literal">nil</span> ;
-<span class="keyword">static</span>  <span class="built_in">dispatch_once_t</span> onceToken;  <span class="comment">// 锁</span>
-<span class="built_in">dispatch_once</span> (&amp; onceToken, ^ {     <span class="comment">// 最多调用一次</span>
-    sharedInstance = [[<span class="keyword">self</span>  alloc] init];
-});
-<span class="keyword">return</span>  sharedInstance;
-}
+采取预先生成圆角图片，并缓存起来这个方法才是比较好的手段。预处理圆角图片可以在后台处理，处理完毕后缓存起来，再在主线程显示，这就避免了不必要的离屏渲染了。
 </code></pre></span>
       
     </div>
@@ -296,16 +279,16 @@ static LOSingleton * shareInstance;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/10/22/stack overflow/" rel="next" title="我已经不再依赖stack overflow">
-                <i class="fa fa-chevron-left"></i> 我已经不再依赖stack overflow
+              <a href="/2014/11/05/tableView小坑/" rel="next" title="storyboard中拖拽tableView">
+                <i class="fa fa-chevron-left"></i> storyboard中拖拽tableView
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/11/05/tableView小坑/" rel="prev" title="storyboard中拖拽tableView">
-                storyboard中拖拽tableView <i class="fa fa-chevron-right"></i>
+              <a href="/2015/03/28/cell高度/" rel="prev" title="自适应cell高度">
+                自适应cell高度 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -420,7 +403,7 @@ static LOSingleton * shareInstance;
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?"><span class="nav-number">1.</span> <span class="nav-text">使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
