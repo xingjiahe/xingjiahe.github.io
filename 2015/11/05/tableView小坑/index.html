@@ -51,37 +51,28 @@
 
 
 
-<meta name="description" content="代码计算 cell自适应高度//这是自己写的方法
-- (CGFloat)calcNameLabelHeight
-{
-// 1.设置计算最大范围
-CGSize maxSize = CGSizeMake(_namelabel.frame.size.width,1000);
+<meta name="description" content="####最近在storyboard的navigationController中拖拽tableView时遇到的小坑各位童鞋们也要注意啊
+在storyboard的navigationController中拖拽tableView时 系统默认会给tableView一个可滑动距离44,这样就会造成tableview顶部有一大块的预留区域,可以用这两种方法去掉它
+// 1
 
-// 2.创建字典包含字体大小
-NSDictionary *dict = @{">
+self.automaticall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自适应cell高度">
-<meta property="og:url" content="http://xingjiahe.win/2015/03/28/cell高度/index.html">
+<meta property="og:title" content="storyboard中拖拽tableView">
+<meta property="og:url" content="http://xingjiahe.win/2015/11/05/tableView小坑/index.html">
 <meta property="og:site_name" content="邢家赫的博客">
-<meta property="og:description" content="代码计算 cell自适应高度//这是自己写的方法
-- (CGFloat)calcNameLabelHeight
-{
-// 1.设置计算最大范围
-CGSize maxSize = CGSizeMake(_namelabel.frame.size.width,1000);
+<meta property="og:description" content="####最近在storyboard的navigationController中拖拽tableView时遇到的小坑各位童鞋们也要注意啊
+在storyboard的navigationController中拖拽tableView时 系统默认会给tableView一个可滑动距离44,这样就会造成tableview顶部有一大块的预留区域,可以用这两种方法去掉它
+// 1
 
-// 2.创建字典包含字体大小
-NSDictionary *dict = @{">
-<meta property="og:updated_time" content="2015-11-28T08:32:11.000Z">
+self.automaticall">
+<meta property="og:updated_time" content="2015-12-05T07:27:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自适应cell高度">
-<meta name="twitter:description" content="代码计算 cell自适应高度//这是自己写的方法
-- (CGFloat)calcNameLabelHeight
-{
-// 1.设置计算最大范围
-CGSize maxSize = CGSizeMake(_namelabel.frame.size.width,1000);
+<meta name="twitter:title" content="storyboard中拖拽tableView">
+<meta name="twitter:description" content="####最近在storyboard的navigationController中拖拽tableView时遇到的小坑各位童鞋们也要注意啊
+在storyboard的navigationController中拖拽tableView时 系统默认会给tableView一个可滑动距离44,这样就会造成tableview顶部有一大块的预留区域,可以用这两种方法去掉它
+// 1
 
-// 2.创建字典包含字体大小
-NSDictionary *dict = @{">
+self.automaticall">
 
 
 
@@ -93,7 +84,7 @@ NSDictionary *dict = @{">
   };
 </script>
 
-  <title> 自适应cell高度 | 邢家赫的博客 </title>
+  <title> storyboard中拖拽tableView | 邢家赫的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +224,7 @@ NSDictionary *dict = @{">
             
             
               
-                自适应cell高度
+                storyboard中拖拽tableView
               
             
           </h1>
@@ -242,8 +233,8 @@ NSDictionary *dict = @{">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-03-28T16:22:09+08:00" content="2015-03-28">
-              2015-03-28
+            <time itemprop="dateCreated" datetime="2015-11-05T11:23:08+08:00" content="2015-11-05">
+              2015-11-05
             </time>
           </span>
 
@@ -266,28 +257,13 @@ NSDictionary *dict = @{">
       
 
       
-        <span itemprop="articleBody"><h4 id="代码计算_cell自适应高度">代码计算 cell自适应高度</h4><pre><code><span class="comment">//这是自己写的方法</span>
-- (<span class="built_in">CGFloat</span>)calcNameLabelHeight
-{
-<span class="comment">// 1.设置计算最大范围</span>
-<span class="built_in">CGSize</span> maxSize = <span class="built_in">CGSizeMake</span>(_namelabel<span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span>,<span class="number">1000</span>);
+        <span itemprop="articleBody"><p>####最近在storyboard的navigationController中拖拽tableView时遇到的小坑各位童鞋们也要注意啊</p>
+<p>在storyboard的navigationController中拖拽tableView时 系统默认会给tableView一个可滑动距离44,这样就会造成tableview顶部有一大块的预留区域,可以用这两种方法去掉它</p>
+<pre><code><span class="comment">// 1</span>
 
-<span class="comment">// 2.创建字典包含字体大小</span>
-<span class="built_in">NSDictionary</span> *dict = @{
+<span class="keyword">self</span><span class="variable">.automaticallyAdjustsScrollViewInsets</span> = <span class="literal">NO</span>;
 
-                       <span class="built_in">NSFontAttributeName</span>:_namelabel<span class="variable">.font</span>
-
-                       };
-
-<span class="comment">// 3.使用方法计算文字的frame</span>
-
-<span class="built_in">CGRect</span> frame = [<span class="keyword">self</span><span class="variable">.addTextField</span><span class="variable">.text</span> boundingRectWithSize:maxSize options:<span class="built_in">NSStringDrawingUsesLineFragmentOrigin</span> attributes:dict context:<span class="literal">nil</span>];
-
-<span class="comment">// 4.返回frame的高度</span>
-<span class="keyword">return</span> frame<span class="variable">.size</span><span class="variable">.height</span>;
-
-
-}
+<span class="comment">// 2        self.navigationController.navigationBar.translucent = NO;</span>
 </code></pre></span>
       
     </div>
@@ -305,16 +281,16 @@ NSDictionary *dict = @{">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/11/02/单例/" rel="next" title="单例">
-                <i class="fa fa-chevron-left"></i> 单例
+              <a href="/2015/04/05/collection/" rel="next" title="CollectionView 中的 cell 自适应">
+                <i class="fa fa-chevron-left"></i> CollectionView 中的 cell 自适应
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/04/05/collection/" rel="prev" title="CollectionView 中的 cell 自适应">
-                CollectionView 中的 cell 自适应 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/11/28/缓存清理/" rel="prev" title="清理缓存">
+                清理缓存 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -429,7 +405,7 @@ NSDictionary *dict = @{">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码计算_cell自适应高度"><span class="nav-number">1.</span> <span class="nav-text">代码计算 cell自适应高度</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
