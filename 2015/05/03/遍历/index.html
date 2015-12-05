@@ -51,22 +51,25 @@
 
 
 
-<meta name="description" content="iOS清理缓存方法在点击事件中调用clear方法
- // 清除缓存
- [self clear];">
+<meta name="description" content="使用block同时遍历字典key，valueblock版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：NSDictionary *dict = @{@&quot;a&quot;: @&quot;1&quot;, @&quot;b&quot;: @&quot;2&quot;};
+[dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+
+NSLog(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="清理缓存">
-<meta property="og:url" content="http://xingjiahe.win/2015/11/28/缓存清理/index.html">
+<meta property="og:title" content="同时遍历字典key，value">
+<meta property="og:url" content="http://xingjiahe.win/2015/05/03/遍历/index.html">
 <meta property="og:site_name" content="邢家赫的博客">
-<meta property="og:description" content="iOS清理缓存方法在点击事件中调用clear方法
- // 清除缓存
- [self clear];">
-<meta property="og:updated_time" content="2015-11-28T08:03:47.000Z">
+<meta property="og:description" content="使用block同时遍历字典key，valueblock版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：NSDictionary *dict = @{@&quot;a&quot;: @&quot;1&quot;, @&quot;b&quot;: @&quot;2&quot;};
+[dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+
+NSLog(">
+<meta property="og:updated_time" content="2015-12-05T08:54:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清理缓存">
-<meta name="twitter:description" content="iOS清理缓存方法在点击事件中调用clear方法
- // 清除缓存
- [self clear];">
+<meta name="twitter:title" content="同时遍历字典key，value">
+<meta name="twitter:description" content="使用block同时遍历字典key，valueblock版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：NSDictionary *dict = @{@&quot;a&quot;: @&quot;1&quot;, @&quot;b&quot;: @&quot;2&quot;};
+[dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+
+NSLog(">
 
 
 
@@ -78,7 +81,7 @@
   };
 </script>
 
-  <title> 清理缓存 | 邢家赫的博客 </title>
+  <title> 同时遍历字典key，value | 邢家赫的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -218,7 +221,7 @@
             
             
               
-                清理缓存
+                同时遍历字典key，value
               
             
           </h1>
@@ -227,26 +230,11 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-28T15:52:53+08:00" content="2015-11-28">
-              2015-11-28
+            <time itemprop="dateCreated" datetime="2015-05-03T16:48:13+08:00" content="2015-05-03">
+              2015-05-03
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/note/" itemprop="url" rel="index">
-                    <span itemprop="name">note</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -266,60 +254,12 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="iOS清理缓存方法">iOS清理缓存方法</h2><pre><code>在点击事件中调用<span class="keyword">clear</span>方法
- <span class="comment">// 清除缓存</span>
- [self <span class="keyword">clear</span>];
-</code></pre><a id="more"></a>
-<pre><code><span class="comment">// 计算单个文件缓存</span>
-- (<span class="keyword">long</span> <span class="keyword">long</span>) fileSizeAtPath:(<span class="built_in">NSString</span>*) filePath{
-<span class="built_in">NSFileManager</span>* manager = [<span class="built_in">NSFileManager</span> defaultManager];
-<span class="keyword">if</span> ([manager fileExistsAtPath:filePath])
-{
-    <span class="keyword">return</span> [[manager attributesOfItemAtPath:filePath error:<span class="literal">nil</span>] fileSize];
-}
-<span class="keyword">return</span> <span class="number">0</span>;
-}
+        <span itemprop="articleBody"><h5 id="使用block同时遍历字典key，value">使用block同时遍历字典key，value</h5><h4 id="block版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：">block版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：</h4><pre><code><span class="built_in">NSDictionary</span> *dict = @{<span class="string">@"a"</span>: <span class="string">@"1"</span>, <span class="string">@"b"</span>: <span class="string">@"2"</span>};
+[dict enumerateKeysAndObjectsUsingBlock:^(<span class="keyword">id</span> key, <span class="keyword">id</span> obj, <span class="built_in">BOOL</span> *stop) {
 
-<span class="comment">// 计算整个目录缓存</span>
-- (<span class="keyword">float</span> ) folderSizeAtPath:(<span class="built_in">NSString</span>*) folderPath{
-<span class="built_in">NSFileManager</span>* manager = [<span class="built_in">NSFileManager</span> defaultManager];
-<span class="keyword">if</span> (![manager fileExistsAtPath:folderPath]) <span class="keyword">return</span> <span class="number">0</span>;
-<span class="built_in">NSEnumerator</span> *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
-<span class="built_in">NSString</span>* fileName;
-<span class="keyword">long</span> <span class="keyword">long</span> folderSize = <span class="number">0</span>;
-<span class="keyword">while</span> ((fileName = [childFilesEnumerator nextObject]) != <span class="literal">nil</span>){
-    <span class="built_in">NSString</span>* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
-    folderSize += [<span class="keyword">self</span> fileSizeAtPath:fileAbsolutePath];
-}
-<span class="keyword">return</span> folderSize/(<span class="number">1024.0</span>*<span class="number">1024.0</span>);
-}
-<span class="comment">// 清除缓存</span>
-- (<span class="keyword">void</span>)clear
-{
- <span class="built_in">dispatch_async</span>(
-               dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)
-               , ^{
-                   <span class="built_in">NSString</span> *cachPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSCachesDirectory</span>,<span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) objectAtIndex:<span class="number">0</span>];
+<span class="built_in">NSLog</span>(<span class="string">@"key: %@, value: %@"</span>, key, obj);
 
-                   <span class="built_in">NSArray</span> *files = [[<span class="built_in">NSFileManager</span> defaultManager] subpathsAtPath:cachPath];
-                   <span class="built_in">NSLog</span>(<span class="string">@"files :%lu"</span>,(<span class="keyword">unsigned</span> <span class="keyword">long</span>)[files count]);
-                   <span class="keyword">for</span> (<span class="built_in">NSString</span> *p <span class="keyword">in</span> files) {
-                       <span class="built_in">NSError</span> *error;
-                       <span class="built_in">NSString</span> *path = [cachPath stringByAppendingPathComponent:p];
-                       <span class="keyword">if</span> ([[<span class="built_in">NSFileManager</span> defaultManager] fileExistsAtPath:path]) {
-                           [[<span class="built_in">NSFileManager</span> defaultManager] removeItemAtPath:path error:&amp;error];
-                       }
-                   }
-[<span class="keyword">self</span> performSelectorOnMainThread:<span class="keyword">@selector</span>(clearCacheSuccess) withObject:<span class="literal">nil</span> waitUntilDone:<span class="literal">YES</span>];});
-
-
-
-    }
-
--(<span class="keyword">void</span>)clearCacheSuccess
-{
-    <span class="built_in">NSLog</span>(<span class="string">@"清理成功"</span>);
-}
+}];
 </code></pre></span>
       
     </div>
@@ -337,13 +277,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/03/遍历/" rel="next" title="同时遍历字典key，value">
-                <i class="fa fa-chevron-left"></i> 同时遍历字典key，value
+              <a href="/2015/04/05/collection/" rel="next" title="CollectionView 中的 cell 自适应">
+                <i class="fa fa-chevron-left"></i> CollectionView 中的 cell 自适应
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/28/缓存清理/" rel="prev" title="清理缓存">
+                清理缓存 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -457,7 +401,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS清理缓存方法"><span class="nav-number">1.</span> <span class="nav-text">iOS清理缓存方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用block同时遍历字典key，value"><span class="nav-number">1.</span> <span class="nav-text">使用block同时遍历字典key，value</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如："><span class="nav-number"></span> <span class="nav-text">block版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：</span></a></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

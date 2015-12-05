@@ -197,15 +197,6 @@
 
     
     
-      
-      
-        
-        
-        
-      
-
-      
-    
 
     
       
@@ -289,6 +280,92 @@
               阅读全文 &raquo;
             </a>
           </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/03/遍历/" itemprop="url">
+                  同时遍历字典key，value
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-05-03T16:48:13+08:00" content="2015-05-03">
+              2015-05-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h5 id="使用block同时遍历字典key，value">使用block同时遍历字典key，value</h5><h4 id="block版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：">block版本的字典遍历可以同时取key和value（forin只能取key再手动取value），如：</h4><pre><code><span class="built_in">NSDictionary</span> *dict = @{<span class="string">@"a"</span>: <span class="string">@"1"</span>, <span class="string">@"b"</span>: <span class="string">@"2"</span>};
+[dict enumerateKeysAndObjectsUsingBlock:^(<span class="keyword">id</span> key, <span class="keyword">id</span> obj, <span class="built_in">BOOL</span> *stop) {
+
+<span class="built_in">NSLog</span>(<span class="string">@"key: %@, value: %@"</span>, key, obj);
+
+}];
+</code></pre>
+            
+          </span>
         
       
     </div>
@@ -1031,87 +1108,6 @@ SecondViewController *secondController = [mainStory <span class="string">instant
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/17/block中的self/" itemprop="url">
-                  block中的self
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-10-17T16:16:52+08:00" content="2014-10-17">
-              2014-10-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h4 id="当要在block中使用self时">当要在block中使用self时</h4><h4 id="可以避免self的block块中持有self本身,造成循环持有">可以避免self的block块中持有self本身,造成循环持有</h4><pre><code>__weak__typeof(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>
-</code></pre>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1158,7 +1154,7 @@ SecondViewController *secondController = [mainStory <span class="string">instant
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
