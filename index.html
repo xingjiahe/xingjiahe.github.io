@@ -604,6 +604,100 @@
             
               
                 
+                <a class="post-title-link" href="/2014/11/23/storyboard/" itemprop="url">
+                  storyboard中的控制器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-23T16:02:17+08:00" content="2014-11-23">
+              2014-11-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h3 id="一些storyboard中的用法">一些storyboard中的用法</h3><h4 id="1-空工程中通过创建storyboard文件加载页面">1.空工程中通过创建storyboard文件加载页面</h4><pre><code><span class="comment">// 获取Main.storyboard</span>
+<span class="built_in">UIStoryboard</span> *mainStory = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"Main"</span> bundle:<span class="literal">nil</span>];
+<span class="comment">// 获取Main.storyboard中的第2个视图</span>
+SecondViewController *secondController = [mainStory instantiateViewControllerWithIdentifier:<span class="string">@"SecondStory"</span>];
+<span class="comment">// 设置窗体的根视图为Storyboard里的视图</span>
+<span class="keyword">self</span><span class="variable">.window</span><span class="variable">.rootViewController</span> = secondController
+</code></pre><h4 id="2-跳转到Storyboard中某个控制器">2.跳转到Storyboard中某个控制器</h4><pre><code><span class="comment">// 获取Main.storyboard</span>
+UIStoryboard *mainStory = [UIStoryboard <span class="string">storyboardWithName:</span>@<span class="string">"Main"</span> <span class="string">bundle:</span>nil];
+
+<span class="comment">// 获取Main.storyboard中的第2个视图</span>
+SecondViewController *secondController = [mainStory <span class="string">instantiateViewControllerWithIdentifier:</span>@<span class="string">"SecondStory"</span>];
+<span class="comment">// 跳转页面</span>
+
+[self <span class="string">presentViewController:</span>secondController <span class="string">animated:</span>YES <span class="string">completion:</span>nil];
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/11/15/监听textfiled/" itemprop="url">
                   监听textfiled字数
                 </a>
