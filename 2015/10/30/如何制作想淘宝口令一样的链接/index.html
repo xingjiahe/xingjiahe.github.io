@@ -1,0 +1,751 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于iOS的剪贴板基本知识">
+<meta property="og:url" content="http://xingjiahe.win/2015/10/30/如何制作想淘宝口令一样的链接/index.html">
+<meta property="og:site_name" content="邢家赫的博客">
+<meta property="og:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta property="og:updated_time" content="2015-12-10T07:46:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于iOS的剪贴板基本知识">
+<meta name="twitter:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 关于iOS的剪贴板基本知识 | 邢家赫的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">邢家赫的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于iOS的剪贴板基本知识
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-30T09:18:10+08:00" content="2015-10-30">
+              2015-10-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</h3><a id="more"></a>
+<h4 id="在iOS中下面三个控件，自身就有复制-粘贴的功能：">在iOS中下面三个控件，自身就有复制-粘贴的功能：</h4><ul>
+<li>1、UITextView</li>
+<li>2、UITextField</li>
+<li>3、UIWebView</li>
+</ul>
+<h4 id="UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</h4><ul>
+<li>1、UIPasteboard：我们可以向其中写入数据，也可以读取数据<ul>
+<li>2、UIMenuController：显示一个快捷菜单，用来展示复制、剪贴、粘贴等选择的项。</li>
+<li>3、UIResponder中的 canPerformAction:withSender:用于控制哪些命令显示在快捷菜单中。</li>
+<li>4、当快捷菜单上的命令点击的时候，UIResponderStandardEditActions将会被调用。</li>
+</ul>
+</li>
+</ul>
+<h4 id="下面这些项能被放置到剪贴板中">下面这些项能被放置到剪贴板中</h4><ul>
+<li>1、UIPasteboardTypeListString —   字符串数组, 包含kUTTypeUTF8PlainText</li>
+<li>2、UIPasteboardTypeListURL —   URL数组，包含kUTTypeURL</li>
+<li>3、UIPasteboardTypeListImage —   图形数组, 包含kUTTypePNG 和kUTTypeJPEG</li>
+<li><p>4、UIPasteboardTypeListColor —   颜色数组</p>
+<p>剪贴板的类型分为两种：<br>系统级：使用UIPasteboardNameGeneral和UIPasteboardNameFind，系统级应用程序关闭，或者卸载的数据不会丢失。<br>应用程序级：通过设置，可以让数据在应用程序关闭之后仍然保存在剪贴板中，但是应用程序卸载之后数据就会失去。我们可用通过pasteboardWithName:create：来创建。</p>
+</li>
+</ul>
+<p>例子如下：<br>有时候我们可能需要复制UILabel上的文本，或者UIImageView的图片，而UILabel和UIImageView默认是不响应Touch事件的，也无法复制，那么我们就需要自己实现一个可复制的UILabel。新添加一个类继承自UILabel：<br>[cpp] view plaincopy<br>@interface UICopyLabel : UILabel<br>@end    </p>
+<pre><code><span class="preprocessor">#import <span class="title">"UICopyLabel.h"</span>    </span>
+<span class="class"><span class="keyword">@implementation</span> <span class="title">UICopyLabel</span>    </span>
+<span class="keyword">@end</span>    
+</code></pre><p>为了能接收到事件（能成为第一响应者），我们需要覆盖一个方法：</p>
+<pre><code>-(<span class="built_in">BOOL</span>)canBecomeFirstResponder  
+{    
+<span class="keyword">return</span> <span class="literal">YES</span>;    
+}    
+</code></pre><p> 还需要针对复制的操作覆盖两个方法： </p>
+<pre><code><span class="comment">// 可以响应的方法  </span>
+-(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
+{    
+<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:));    
+}    
+
+<span class="comment">//针对于响应方法的实现    </span>
+    -(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
+{    
+<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
+pboard<span class="variable">.string</span> = <span class="keyword">self</span><span class="variable">.text</span>;    
+}    
+</code></pre><p>有了以上三个方法，我们就能处理copy了，当然，在能接收到事件的情况下：</p>
+<pre><code><span class="comment">//UILabel默认是不接收事件的，我们需要自己添加touch事件    </span>
+-(<span class="keyword">void</span>)attachTapHandler  
+{    
+<span class="keyword">self</span><span class="variable">.userInteractionEnabled</span> = <span class="literal">YES</span>;  <span class="comment">//用户交互的总开关    </span>
+<span class="built_in">UITapGestureRecognizer</span> *touch = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handleTap:)];    
+touch<span class="variable">.numberOfTapsRequired</span> = <span class="number">2</span>;    
+[<span class="keyword">self</span> addGestureRecognizer:touch];    
+[touch release];    
+}    
+<span class="comment">//绑定事件    </span>
+- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame    
+{    
+<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];    
+<span class="keyword">if</span> (<span class="keyword">self</span>)  
+   {    
+    [<span class="keyword">self</span> attachTapHandler];    
+}    
+<span class="keyword">return</span> <span class="keyword">self</span>;    
+}    
+<span class="comment">//同上    </span>
+-(<span class="keyword">void</span>)awakeFromNib  
+{    
+[<span class="keyword">super</span> awakeFromNib];    
+[<span class="keyword">self</span> attachTapHandler];    
+}    
+</code></pre><p>我们已经可以接收到事件了！由于我在上方将tap数设为2，所以需要双击才能捕获，接下来，我们需要处理这个tap，以便让菜单栏弹出来：</p>
+<pre><code>-(<span class="keyword">void</span>)handleTap:(<span class="built_in">UIGestureRecognizer</span>*) recognizer  
+{    
+ [<span class="keyword">self</span> becomeFirstResponder];  
+ <span class="built_in">UIMenuItem</span> *copyLink = [[[<span class="built_in">UIMenuItemalloc</span>] initWithTitle:<span class="string">@"复制"</span>  
+                                                      action:<span class="keyword">@selector</span>(<span class="keyword">copy</span>:)]autorelease];  
+ [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuItems:[<span class="built_in">NSArrayarrayWithObjects</span>:copyLink, <span class="literal">nil</span>]];  
+ [[<span class="built_in">UIMenuControllersharedMenuController</span>] setTargetRect:<span class="keyword">self</span><span class="variable">.frameinView</span>:<span class="keyword">self</span><span class="variable">.superview</span>];  
+ [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuVisible:YESanimated: <span class="literal">YES</span>];  
+}    
+</code></pre><p> 这样一来，一个可复制的UILabel就诞生了！它能处理接收点击、弹出菜单栏、处理copy，这是一个很普通的可复制控件。</p>
+<p>接下来我们做一个可复制的UIImageView，创建一个新的viewController，放两个imageView，默认显示不同的图：<br>然后把上面的代码直接拷过来，改三个地方：</p>
+<pre><code>-(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
+{    
+<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:) || action == <span class="keyword">@selector</span>(paste:));    
+}    
+
+-(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
+{    
+<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];   
+<span class="built_in">NSData</span> *imgData = <span class="built_in">UIImagePNGRepresentation</span>(<span class="keyword">self</span><span class="variable">.image</span>);
+pboard<span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageWithData:imgData];   
+}    
+
+-(<span class="keyword">void</span>)paste:(<span class="keyword">id</span>)sender  
+{    
+<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
+<span class="keyword">self</span><span class="variable">.image</span> = pboard<span class="variable">.image</span>;    
+}    
+</code></pre><p> UIPasteboard有系统级别和应用级别两种类型，所以不仅可以在应用程序内通信，还能在应用程序间通信，比如我复制一个url，然后打开safari，粘贴到地址栏去，而我们可以在应用程序间通信、共享数据。</p>
+<p>在PasteBoardWrite里面点“写入”后把textField中的文本写入粘贴板，然后切换到PasteBoardRead的时候显示出来。如果我们的粘贴板只想给“自己人”用的话，就不能用系统的通用粘贴板，需要我们自己创建一个：</p>
+<pre><code><span class="comment">//需要提供一个唯一的名字，一般使用倒写的域名：com.mycompany.myapp.pboard    </span>
+<span class="comment">//后面的参数表示，如果不存在，是否创建一个    </span>
+<span class="built_in">UIPasteboard</span> *pb = [<span class="built_in">UIPasteboard</span>     pasteboardWithName:<span class="string">@"testBoard"</span> create:<span class="literal">YES</span>];    
+</code></pre><p>使用这个粘贴板，我们可以把文本存进去，然后在另一个app里面读出来，一些常用的类型已经被设置为属性了： </p>
+<p>除此之外，如果是能够转换成plist的数据类型（NSString, NSArray, NSDictionary, NSDate, NSNumber 和 NSURL），我们可以调用setValue:forPasteboardType:方法去存储数据，其他类型只能调用setData:forPasteboardType:方法（plist数据类型也可使用），类似于这样：</p>
+<pre><code><span class="comment">//存储数据  </span>
+NSDictionary *dict = [NSDictionary <span class="string">dictionaryWithObject:</span>textField.text <span class="string">forKey:</span>@<span class="string">"content"</span>];    
+NSData *dictData = [NSKeyedArchiver <span class="string">archivedDataWithRootObject:</span>dict];    
+[pb <span class="string">setData:</span>dictData <span class="string">forPasteboardType:</span>@<span class="string">"myType"</span>];    
+
+<span class="comment">//获取就类似于这样：   </span>
+UIPasteboard *pb = [UIPasteboard <span class="string">pasteboardWithName:</span>@<span class="string">"testBoard"</span> <span class="string">create:</span>YES];    
+NSDictionary *dict = [NSKeyedUnarchiver <span class="string">unarchiveObjectWithData:</span>[pb <span class="string">dataForPasteboardType:</span>@<span class="string">"myType"</span>]];    
+caption.text = [dict <span class="string">objectForKey:</span>@<span class="string">"content"</span>];    
+</code></pre><p>上面提到了一个PasteboardType，这是一个统一类型标识符（Uniform Type Identifier  UTI）,能帮助app获取自己能处理的数据。比如你只能处理文本的粘贴，那给你一个UIImage显然是无用的。你可以使用公用的UTI，也可以使用任意字符，苹果建议使用倒写的域名加上类型名：com.myCompany.myApp.myType</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
+                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/10/NSURLSession下载与缓存/" rel="prev" title="NSURLSession下载与缓存">
+                NSURLSession下载与缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/xing.jpg" alt="邢家赫" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">邢家赫</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#[转]关于制作一个像淘宝那样复制链接就可以生成一条链接"><span class="nav-number">1.</span> <span class="nav-text">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在iOS中下面三个控件，自身就有复制-粘贴的功能："><span class="nav-number">1.1.</span> <span class="nav-text">在iOS中下面三个控件，自身就有复制-粘贴的功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。"><span class="nav-number">1.2.</span> <span class="nav-text">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面这些项能被放置到剪贴板中"><span class="nav-number">1.3.</span> <span class="nav-text">下面这些项能被放置到剪贴板中</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邢家赫</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
